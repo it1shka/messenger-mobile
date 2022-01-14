@@ -1,14 +1,13 @@
 import { getAuth, signOut } from "firebase/auth"
+import { useContext } from "react"
 import { StyleSheet, Text, View, Button, Image } from "react-native"
-import { useSelector } from "react-redux"
-import { AppState } from "../store"
+import Context from "../context"
 
 const defaultpp = require('../assets/defaultpp.png')
 
 const Profile = () => {
-  const user = useSelector((state: AppState) => state.main.user)
   const auth = getAuth()
-
+  const user = useContext(Context)
   const handleSignOut = () => {
     signOut(auth)
   }

@@ -3,7 +3,7 @@ import { Text, View } from "react-native"
 const Chats = () => {
   return (
     <View>
-      <Text>Chats!</Text>
+      <Text>Chats!!!</Text>
     </View>
   )
 }
