@@ -6,15 +6,19 @@ import Context from './context'
 
 import SignIn from "./components/SignIn"
 import MainLayout from './components/MainLayout'
+import { useEffect } from 'react'
 
 
 const App = () => {
   const [user, setUser] = useState<User | null>(null)
 
-  const auth = getAuth()
-  onAuthStateChanged(auth, user => {
-    setUser(user)
-  })
+  useEffect(() => {
+    const auth = getAuth()
+    const unsubscribe = onAuthStateChanged(auth, user => {
+      setUser(user)
+    })
+    return () => unsubscribe()
+  }, [])
 
   return (
     <Context.Provider value={user}>
