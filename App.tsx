@@ -1,20 +1,33 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import 'react-native-gesture-handler'
+import './firebase.config'
+import { Provider, useDispatch } from "react-redux"
+import { AppDispatch, AppState, store } from './store'
+import {getAuth, onAuthStateChanged} from 'firebase/auth'
+import { useSelector } from 'react-redux'
 
-export default function App() {
+import SignIn from "./components/SignIn"
+import MainLayout from './components/MainLayout'
+import { setUser } from './store/actions/main.actions'
+
+const App = () => {
+  const dispatch = useDispatch<AppDispatch>()
+  const user = useSelector((state: AppState) => state.main.user)
+  const auth = getAuth()
+  onAuthStateChanged(auth, user => {
+    dispatch(setUser(user))
+  })
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    <>
+      {user ? <MainLayout /> : <SignIn />}
+    </>
+  )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default function() {
+  return (
+    <Provider store={store}>
+      <App />
+    </Provider>
+  )
+}
