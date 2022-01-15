@@ -1,5 +1,5 @@
 import { useContext, useState } from "react"
-import { FlatList, Text, View } from "react-native"
+import { FlatList } from "react-native"
 import { doc, getFirestore, onSnapshot } from 'firebase/firestore'
 import Context from "../context"
 import { useEffect } from "react"
