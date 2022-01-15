@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+// import { useEffect } from "react"
 import { useRef } from "react"
 import { useContext } from "react"
 import { StyleSheet, FlatList, ListRenderItem, View } from "react-native"
@@ -11,9 +11,13 @@ const Messages = ({messages}: {messages: Message[]}) => {
   const user = useContext(Context)!
   const listRef = useRef<FlatList>(null)
 
-  useEffect(() => {
-    listRef.current?.scrollToEnd({animated: true})
-  })
+  const toBottom = () => {
+    listRef.current?.scrollToEnd({animated: true})    
+  }
+
+  // useEffect(() => {
+  //   toBottom()
+  // })
 
   const renderMessage: ListRenderItem<Message> = ({item}) => {
     return (
@@ -33,6 +37,8 @@ const Messages = ({messages}: {messages: Message[]}) => {
       keyExtractor={(_, idx) => idx.toString()}
       ListFooterComponent={<View style={{height: 85}}></View>}
       showsVerticalScrollIndicator={false}
+
+      onContentSizeChange={toBottom}
     />
   )
 }
