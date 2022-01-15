@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler'
 import './firebase.config'
-import {getAuth, onAuthStateChanged, User} from 'firebase/auth'
+import { getAuth, onAuthStateChanged, User } from 'firebase/auth'
 import { useState } from 'react'
 import Context from './context'
 
