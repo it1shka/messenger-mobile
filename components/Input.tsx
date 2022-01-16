@@ -17,7 +17,7 @@ const Input = ({onMessage}: {onMessage?: (message: string) => void}) => {
         onChangeText={value => setMessage(value)}
         value={message}
         placeholder="Ваше сообщение..." 
-        style={FormStyles.field}
+        style={[FormStyles.field, {maxHeight: 35}]}
         multiline={true}
       />
       <Button title="Отправить" onPress={handleSubmit}/>  
