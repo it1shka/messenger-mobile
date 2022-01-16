@@ -23,8 +23,9 @@ const Chats = () => {
   return (
     <FlatList 
       data={channels}
-      renderItem={({item, index}) => {
-        return <Channel key={index} id={item} />
+      keyExtractor={(item) => item}
+      renderItem={({item}) => {
+        return <Channel id={item} />
       }} 
     />
   )

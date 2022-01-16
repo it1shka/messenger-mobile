@@ -34,7 +34,7 @@ const Messages = ({messages}: {messages: Message[]}) => {
       style={styles.container}
       data={messages}
       renderItem={renderMessage}
-      keyExtractor={(_, idx) => idx.toString()}
+      keyExtractor={(item) => item.createdAt.toMillis().toString()}
       ListFooterComponent={<View style={{height: 85}}></View>}
       showsVerticalScrollIndicator={false}
 

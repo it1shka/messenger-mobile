@@ -4,10 +4,11 @@ import { arrayRemove, doc, getDoc, getFirestore, setDoc } from "firebase/firesto
 import { useState } from "react"
 import { useContext } from "react"
 import { useEffect } from "react"
-import { StyleSheet, Text, View, Image, TouchableOpacity, Alert } from "react-native"
+import { Text, View, Image, TouchableOpacity, Alert } from "react-native"
 import Context from "../context"
 import { MyUser } from "../types"
 import { StackParamList } from "./MainLayout"
+import { UserStyles } from "./styles"
 
 const defaultpp = require('../assets/defaultpp.png')
 
@@ -57,10 +58,10 @@ const Channel = ({id}: {id: string}) => {
       disabled={!user}
       onLongPress={handleRemoveChannel} 
       onPress={handleChooseChannel}
-      style={styles.container}
+      style={UserStyles.container}
     >
       <Image 
-        style={styles.profilePicture}
+        style={UserStyles.profilePicture}
         source={user ? {uri: user.photoURL} : defaultpp}
       />
       <View style={{marginLeft: 15}}>
@@ -70,23 +71,5 @@ const Channel = ({id}: {id: string}) => {
     </TouchableOpacity>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    paddingVertical: 10,
-    paddingHorizontal: 10,
-    marginVertical: 5,
-    marginHorizontal: 10,
-
-    backgroundColor: 'white',
-    borderRadius: 10,
-  },
-  profilePicture: {
-    width: 50,
-    height: 50,
-    borderRadius: 100,
-  }
-})
 
 export default Channel
