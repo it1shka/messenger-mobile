@@ -1,4 +1,4 @@
-import { arrayUnion, collection, doc, getDocs, getFirestore, query, setDoc, where } from "firebase/firestore"
+import { arrayUnion, collection, doc, getDocs, getFirestore, limit, orderBy, query, setDoc, where } from "firebase/firestore"
 import { useContext } from "react"
 import { useState } from "react"
 import { FlatList, View } from "react-native"
@@ -35,7 +35,9 @@ const Search = () => {
       const usersQuery = query(
         usersRef,
         where('email', '>=', queryStr),
-        where('email', '<', successor(queryStr)) 
+        where('email', '<', successor(queryStr)),
+        orderBy('email'),
+        limit(10)
       )
 
       const snapshot = await getDocs(usersQuery)
